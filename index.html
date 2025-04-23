@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List con Drag and Drop</title>
+    <!-- Importamos Bootstrap 5 desde CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome para iconos - CORRECCIÓN: Usando el CDN oficial más reciente -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    
+    <!-- Aquí está la línea corregida para los iconos ^^^ -->
+    <!-- Estamos usando la versión 6.4.2 de Font Awesome desde el CDN oficial -->
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header / Cabecera -->
+    <header class="app-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1><i class="fas fa-tasks me-2"></i>TaskMas</h1>
+                </div>
+                <div class="col-md-6">
+                    <nav class="d-flex justify-content-end">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#"><i class="fas fa-home me-1"></i> Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#"><i class="fas fa-chart-bar me-1"></i> Estadísticas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#"><i class="fas fa-user me-1"></i> Perfil</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Contenido principal -->
+    <main class="container">
+        <div class="app-container">
+            <h2 class="text-center mb-4">Mi Lista de Tareas</h2>
+            <p class="text-center text-muted mb-4">Organiza tus tareas diarias fácilmente. Añade nuevas tareas y arrastra entre columnas para cambiar su estado.</p>
+            
+            <!-- Formulario para añadir nuevas tareas -->
+            <div class="row mb-4">
+                <div class="col-md-8 mx-auto">
+                    <form id="taskForm" class="d-flex">
+                        <input type="text" id="taskInput" class="form-control me-2" placeholder="Escribe una nueva tarea..." required>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-plus me-1"></i> Añadir</button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Contenedor principal para las tres columnas de tareas -->
+            <div class="row">
+                <!-- Columna de tareas pendientes -->
+                <div class="col-md-4">
+                    <div class="task-column" id="pendingTasks" data-status="pending">
+                        <h3 class="column-title">
+                            <i class="fas fa-clipboard-list me-2 text-warning"></i>
+                            Pendientes <span class="badge bg-warning" id="pendingCount">0</span>
+                        </h3>
+                        <!-- Las tareas pendientes se insertarán aquí dinámicamente -->
+                    </div>
+                </div>
+                
+                <!-- Columna de tareas en proceso -->
+                <div class="col-md-4">
+                    <div class="task-column" id="inProgressTasks" data-status="in-progress">
+                        <h3 class="column-title">
+                            <i class="fas fa-spinner me-2 text-primary"></i>
+                            En Proceso <span class="badge bg-primary" id="inProgressCount">0</span>
+                        </h3>
+                        <!-- Las tareas en proceso se insertarán aquí dinámicamente -->
+                    </div>
+                </div>
+                
+                <!-- Columna de tareas completadas -->
+                <div class="col-md-4">
+                    <div class="task-column" id="completedTasks" data-status="completed">
+                        <h3 class="column-title">
+                            <i class="fas fa-check-circle me-2 text-success"></i>
+                            Completadas <span class="badge bg-success" id="completedCount">0</span>
+                        </h3>
+                        <!-- Las tareas completadas se insertarán aquí dinámicamente -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Instrucciones de uso -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="alert alert-info" role="alert">
+                        <h5><i class="fas fa-info-circle me-2"></i>Cómo usar esta aplicación:</h5>
+                        <ul>
+                            <li>Escribe el nombre de tu tarea y haz clic en "Añadir"</li>
+                            <li>Arrastra las tareas entre columnas para cambiar su estado</li>
+                            <li>Usa el menú desplegable para cambiar el estado o eliminar tareas</li>
+                            <li>Tus tareas se guardarán automáticamente en este navegador</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer / Pie de página -->
+    <footer class="app-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>TaskMaster</h5>
+                    <p class="text-muted">Organiza tu vida de forma sencilla</p>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0 text-center">
+                    <h5>Enlaces</h5>
+                    <div class="footer-links">
+                        <a href="#">Inicio</a>
+                        <a href="#">Acerca de</a>
+                        <a href="#">Contacto</a>
+                        <a href="#">Ayuda</a>
+                    </div>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <h5>Síguenos</h5>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4 mb-3">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2025 TaskMas. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Importamos Bootstrap JS y Popper.js (necesario para algunos componentes de Bootstrap) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Importamos el JS -->
+    <script src="script.js"></script>
+</body>
+</html>
